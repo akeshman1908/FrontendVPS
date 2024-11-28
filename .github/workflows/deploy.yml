@@ -1,0 +1,32 @@
+name: Deploy Frontend to VPS
+
+on:
+  push:
+    branches:
+      - main  # De workflow wordt uitgevoerd bij elke push naar de `main` branch.
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Haal de code op van de repository
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # 2. Stel SSH in voor veilige verbinding met de VPS
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
+
+    # 3. Installeer Node.js en bouw de React-app
+    - name: Install dependencies and build
+      run: |
+        npm install
+        npm run build
+
+    # 4. Deploy de gegenereerde bestanden naar de VPS
+    - name: Deploy to VPS
+      run: |
+        scp -r ./build/* Administrator@<IP-VPS>:C:/PortfolioTracker/frontend/
