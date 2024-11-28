@@ -18,6 +18,26 @@ function App() {
           Learn React
         </a>
       </header>
+      <main>
+        <section>
+          <h1>Welkom bij PortfolioTracker!</h1>
+          <p>Begin met het volgen van je portfolio en assets in realtime.</p>
+          <button
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#61dafb',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              fontSize: '16px',
+              color: '#000',
+            }}
+            onClick={() => window.location.href = '/portfolio'}
+          >
+            Bekijk mijn portfolio
+          </button>
+        </section>
+      </main>
     </div>
   );
 }
