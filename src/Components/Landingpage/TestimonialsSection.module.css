@@ -1,0 +1,51 @@
+/* Sectie achtergrond */
+.testimonials {
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Kaarten styling */
+  .card {
+    background-color: white;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Avatar */
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #007bff;
+  }
+  
+  /* Quote */
+  .quote {
+    font-style: italic;
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  /* Naam */
+  .name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #223280;
+  }
+  
+  /* Rol */
+  .role {
+    font-size: 0.9rem;
+    color: #999;
+  }
+  

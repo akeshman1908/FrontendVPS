@@ -1,0 +1,40 @@
+.promotionSection {
+  background-color: #f8f9fa; /* Subtiele lichtgrijze achtergrond */
+  color: #343a40; /* Donkergrijze tekstkleur voor contrast */
+  padding: 60px 0;
+  border-top: 2px solid #dee2e6;
+}
+
+.title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  color: #6c757d; /* Lichtgrijze kleur voor subtiele tekst */
+}
+
+.highlight {
+  color: #007bff; /* Blauw voor nadruk op merknaam */
+  font-weight: 600;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+  transform: scale(1.05);
+}

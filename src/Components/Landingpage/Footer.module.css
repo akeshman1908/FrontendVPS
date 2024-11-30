@@ -1,0 +1,56 @@
+/* Algemeen */
+.footer {
+    background-color: #223280;
+    color: white;
+    border-top: 5px solid #007bff;
+  }
+  
+  /* Footer sectie titels */
+  .footerTitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+  
+  /* Footer tekst */
+  .footerText {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #dcdcdc;
+  }
+  
+  /* Links */
+  .footerLinks {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footerLink {
+    color: #ffde59;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+  }
+  
+  .footerLink:hover {
+    color: #e6c636;
+  }
+  
+  /* Sociale iconen */
+  .socialIcons a {
+    color: white;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+  }
+  
+  .socialIcons a:hover {
+    color: #ffde59;
+  }
+  
+  /* Copyright */
+  .copyright {
+    font-size: 0.85rem;
+    color: #dcdcdc;
+    margin: 0;
+  }
+  

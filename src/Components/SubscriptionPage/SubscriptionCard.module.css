@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+
+/* Algemene styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', sans-serif;
+}
+
+.background {
+  background: linear-gradient(135deg, #223280, #4b6cb7); /* Donker naar lichter blauw */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  text-align: center;
+  color: white;
+  padding: 20px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+}
+
+.cancel {
+  color: #00ffcc;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.subscriptionOptions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  width: 320px;
+  color: black;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.highlighted {
+  border: 3px solid #007bff;
+}
+
+.tag {
+  background: #007bff;
+  color: white;
+  font-size: 0.9rem;
+  padding: 5px 12px;
+  border-radius: 20px;
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.plan {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.discount {
+  font-size: 1rem;
+  color: #007bff;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.perMonth {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+.billingCycle {
+  font-size: 1rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.primaryButton {
+  background: #223280;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.primaryButton:hover {
+  background-color: #4b6cb7;
+  transform: scale(1.05);
+}
+
+.secondaryButton {
+  background: #f7f7f7;
+  color: #223280;
+  padding: 12px 25px;
+  border: 2px solid #223280;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.secondaryButton:hover {
+  background: #223280;
+  color: white;
+  transform: scale(1.05);
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.features li {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  color: #555;
+}
+
+.features li i {
+  color: #007bff;
+  margin-right: 10px;
+}
+
+.startDate {
+  color: #00ffcc;
+  font-size: 1.1rem;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.paymentMethods {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.paymentMethods i {
+  font-size: 2rem;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.paymentMethods i:hover {
+  color: #00ffcc;
+}
+
+/* Responsief ontwerp */
+@media (max-width: 768px) {
+  .subscriptionOptions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+  }
+}
