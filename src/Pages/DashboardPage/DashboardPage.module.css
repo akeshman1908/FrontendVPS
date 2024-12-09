@@ -1,0 +1,36 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+  }
+  
+  .container {
+    display: flex;
+    flex: 1;
+  }
+  
+  .content {
+    flex: 1;
+    background-color: #fff;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .collapsed {
+    width: calc(100% - 5rem);
+    transition: width 0.3s ease;
+  }
+  
+  .expanded {
+    width: calc(100% - 15.625rem);
+    transition: width 0.3s ease;
+  }
+  
+  .tableWrapper {
+    padding: 1.25rem;
+  }
+  
+  

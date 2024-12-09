@@ -1,0 +1,47 @@
+.paginationContainer {
+    display: flex;
+    justify-content: space-between; /* Links en rechts verdelen */
+    align-items: center;
+    padding: 0.8rem 1rem; /* Grotere padding voor een dikkere balk */
+    border-radius: 8px; /* Ronde hoeken */
+    background-color: #e9ecef; /* Lichte grijze achtergrond */
+    margin-top: 1rem;
+    height: 3rem; /* Grotere hoogte voor een dikkere balk */
+  }
+  
+  .summary {
+    font-size: 0.9rem; /* Tekstgrootte passend bij de dikkere balk */
+    color: #495057; /* Neutrale tekstkleur */
+  }
+  
+  .controls {
+    display: flex;
+    gap: 0.5rem; /* Ruimte tussen knoppen */
+  }
+  
+  .button {
+    padding: 0.4rem 0.8rem; /* Afmetingen knoppen behouden */
+    font-size: 0.875rem; /* Tekstgrootte knoppen behouden */
+    border: 1px solid #ced4da; /* Lichte rand */
+    border-radius: 4px;
+    background-color: #fff;
+    color: #495057;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .button:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .button:active {
+    background-color: #e0e0e0;
+  }
+  
+  .button:disabled,
+  .button.disabled {
+    background-color: #e9ecef;
+    color: #adb5bd;
+    cursor: not-allowed;
+  }
+  

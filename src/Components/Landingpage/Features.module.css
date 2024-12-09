@@ -1,28 +1,41 @@
 .featuresSection {
-    background: linear-gradient(135deg, #223280, #007bff);
+    background-image: linear-gradient(90deg, #007bff, #6f42c1);
     color: white;
-    padding: 60px 0;
+    padding: 60px 20px;
   }
   
   .title {
     font-family: 'Outfit', sans-serif;
     font-size: 2.5rem;
+    text-align: center;
     margin-bottom: 10px;
   }
   
   .subtitle {
     font-family: 'Outfit', sans-serif;
     font-size: 1.2rem;
+    text-align: center;
     margin-bottom: 30px;
     color: rgba(255, 255, 255, 0.8);
   }
   
+  /* Container voor de kaarten */
+  .featuresContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Vier kolommen op desktop */
+    gap: 20px; /* Ruimte tussen de kaarten */
+    max-width: 1200px;
+    margin: 0 auto; /* Centreer de container */
+  }
+  
+  /* Kaarten */
   .featureCard {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
   }
   
   .featureCard:hover {
@@ -30,20 +43,51 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   }
   
+  /* Icon */
   .icon {
     color: #ffffff;
     margin-bottom: 15px;
   }
   
+  /* Titel van de feature */
   .featureTitle {
     font-family: 'Outfit', sans-serif;
     font-size: 1.25rem;
     margin-bottom: 10px;
   }
   
+  /* Tekst onder de titel */
   .featureText {
     font-family: 'Outfit', sans-serif;
     font-size: 1rem;
     color: rgba(255, 255, 255, 0.8);
+  }
+  
+  /* Mobile-specific styles */
+  @media (max-width: 768px) {
+    .featuresContainer {
+      grid-template-columns: 1fr; /* Eén kolom op mobiele apparaten */
+      gap: 20px; /* Extra ruimte tussen de kaarten */
+    }
+  
+    .title {
+      font-size: 2rem; /* Kleiner voor mobiel */
+    }
+  
+    .subtitle {
+      font-size: 1rem; /* Kleiner voor mobiel */
+    }
+  
+    .featureCard {
+      padding: 15px; /* Compactere kaarten op mobiel */
+    }
+  
+    .featureTitle {
+      font-size: 1.1rem;
+    }
+  
+    .featureText {
+      font-size: 0.9rem;
+    }
   }
   

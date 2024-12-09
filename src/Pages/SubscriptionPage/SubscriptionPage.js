@@ -1,7 +1,7 @@
 import React from 'react';
 import SubscriptionCard from '../../Components/SubscriptionPage/SubscriptionCard';
 
-function Landingpage() {
+function SubscriptionPage() {
   return (
     <>
    <SubscriptionCard /> 
@@ -9,4 +9,4 @@ function Landingpage() {
   );
 }
 
-export default Landingpage;
+export default SubscriptionPage;

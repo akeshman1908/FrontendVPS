@@ -1,53 +1,233 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
-
-* {
-  font-family: 'Outfit', sans-serif;
+/* Standaard verbergen van mobile-specifieke items op desktop en grotere schermen */
+.hamburgerMenu,
+.startTrialMobile,
+.sidebarOverlay,
+.sidebar {
+  display: none;
 }
 
-.navbar {
+/* Algemene container */
+.navbarContainer {
+  width: 100%;
   background-color: white;
-  padding: 10px 0;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #ddd; /* Thin border for distinction */
 }
 
-.logo {
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+/* Logo als tekst */
+.navbarBrand {
+  font-size: 1.5rem;
+  font-weight: bold;
   color: black;
-  font-size: 24px;
+  text-decoration: none;
 }
 
-.nav-link {
-  color: black !important;
-  margin-right: 20px;
+.brandHighlight {
+  background-image: linear-gradient(90deg, #007bff, #6f42c1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.flagButton {
+/* Navigatie links */
+.navLinks {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 5px 10px;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 50px;
-  margin-right: 20px;
+  gap: 20px;
+}
+
+.navLink {
+  font-size: 1rem;
+  color: black;
+  text-decoration: none;
+  position: relative;
   cursor: pointer;
 }
 
-.flagImage {
-  width: 20px;
-  height: auto;
+.arrowDown {
+  font-size: 0.8rem;
+  margin-left: 5px;
+}
+
+.searchIcon {
   margin-right: 5px;
 }
 
-.chevronIcon {
-  font-size: 12px;
-  color: gray;
+/* Knoppen */
+.navButtons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.tryButton {
-  background-color: black;
+.startTrial {
+  background-image: linear-gradient(90deg, #007bff, #6f42c1);
   color: white;
-  border-radius: 50px;
-  padding: 10px 20px;
   border: none;
-  font-weight: 700;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: bold;
   cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.startTrial:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+.login {
+  background-color: white;
+  color: black;
+  border: 1px solid #ddd;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login:hover {
+  background-color: #f0f0f0;
+}
+
+/* Taalkeuze */
+.languageButton {
+  background-color: white;
+  color: black;
+  border: 1px solid #ddd;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.languageButton:hover {
+  background-color: #f0f0f0;
+  border-color: #007bff;
+}
+
+.flagIcon {
+  width: 20px;
+  height: 15px;
+  border-radius: 2px;
+}
+
+/* De 'open' class om te togglen via CSS Modules */
+.open {}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  /* Verberg de originele navLinks en navButtons op mobile */
+  .navLinks,
+  .navButtons {
+    display: none;
+  }
+
+  /* Hamburger menu button zichtbaar op mobile */
+  .hamburgerMenu {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    margin-left: 10px;
+  }
+
+  /* Mobile start trial button */
+  .startTrialMobile {
+    display: inline-block;
+    background-image: linear-gradient(90deg, #007bff, #6f42c1);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    margin-left: auto;
+  }
+
+  .startTrialMobile:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+
+  /* Verberg de desktop startTrial op mobile */
+  .startTrial {
+    display: none;
+  }
+
+  /* Sidebar styling */
+  .sidebarOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    z-index: 999;
+  }
+
+  .sidebarOverlay.open {
+    display: block;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background: white;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebarNavLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .sidebarNavLink {
+    font-size: 1.2rem;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .sidebarButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .sidebar .languageButton,
+  .sidebar .login {
+    width: 100%;
+  }
 }

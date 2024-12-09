@@ -1,0 +1,48 @@
+.wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  padding: 12px;
+  border-bottom: 2px solid #ddd;
+  cursor: pointer;
+  user-select: none;
+}
+
+.table th:hover {
+  background-color: #f0f0f0;
+}
+
+.table th .thContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+.sort-icon {
+  margin-left: 8px;
+}

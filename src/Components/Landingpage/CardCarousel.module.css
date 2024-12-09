@@ -1,0 +1,168 @@
+/* General Section Styling */
+.carouselSection {
+    padding: 20px;
+    background-color: white;
+    margin-bottom: 50px;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Carousel Header */
+  .carouselHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .carouselHeader h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .viewAll {
+    font-size: 1rem;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .viewAll:hover {
+    text-decoration: underline;
+  }
+  
+  /* Carousel Wrapper */
+  .carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; /* Maak horizontaal scrollbaar op mobiel */
+    scroll-snap-type: x mandatory; /* Zorg voor snap-effect */
+    padding-bottom: 10px; /* Ruimte onder voor scroll-indicatie */
+  }
+  
+  .carousel::-webkit-scrollbar {
+    display: none; /* Verberg standaard scrollbalk */
+  }
+  
+  .card {
+    flex: 0 0 300px; /* Zorg dat kaarten een vaste breedte hebben */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    scroll-snap-align: start; /* Snap iedere kaart bij scroll */
+  }
+  
+  .cardImage {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .cardBody {
+    padding: 15px;
+  }
+  
+  .cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .proLabel {
+    background-color: gold;
+    color: black;
+    font-size: 0.8rem;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-weight: bold;
+  }
+  
+  .category {
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .cardTitle {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #000;
+  }
+  
+  .cardDescription {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  
+  .cardFooter {
+    font-size: 0.8rem;
+    color: #999;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  /* Navigation Buttons */
+  .carouselNav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .navButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .navButton:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+    .carouselHeader h2 {
+      font-size: 1.2rem; /* Kleinere titel op mobiel */
+    }
+  
+    .viewAll {
+      font-size: 0.9rem; /* Kleinere knop op mobiel */
+    }
+  
+    .carousel {
+      gap: 15px; /* Minder ruimte tussen kaarten */
+    }
+  
+    .card {
+      flex: 0 0 250px; /* Kleinere kaarten op mobiel */
+    }
+  
+    .cardImage {
+      height: 120px; /* Minder hoge afbeelding */
+    }
+  
+    .cardTitle {
+      font-size: 1rem;
+    }
+  
+    .cardDescription {
+      font-size: 0.8rem;
+    }
+  
+    .cardFooter {
+      font-size: 0.75rem;
+    }
+  }
+  

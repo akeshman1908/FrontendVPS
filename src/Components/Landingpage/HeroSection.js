@@ -1,41 +1,33 @@
-import React from 'react';
-import styles from './HeroSection.module.css'; // CSS Module
+import React from "react";
+import styles from "./HeroSection.module.css";
+import heroImage from "../../Images/LandingPage/hero.png"; // Adjust the path if necessary
 
-function HeroSection() {
+const HeroSection = () => {
   return (
-    <section className={`py-5 ${styles.hero}`}>
-      <div className="container">
-        <div className="row align-items-center">
-          {/* Linker kolom: Tekst en Call-to-Actions */}
-          <div className="col-lg-6 text-center text-lg-start">
-            <h1 className={styles.title}>
-              Empower Your <span className={styles.highlight}>Investments</span>
-            </h1>
-            <p className={`${styles.description} mt-3`}>
-              Seamlessly manage your portfolio, track your progress, and achieve your financial goals.
-            </p>
-            <div className="mt-4">
-              <a href="#signup" className={`btn btn-primary me-3 ${styles.btnPrimary}`}>
-                <i className="fas fa-rocket me-2"></i> Get Started
-              </a>
-              <a href="#learn-more" className={`btn btn-outline-light ${styles.btnSecondary}`}>
-                <i className="fas fa-info-circle me-2"></i> Learn More
-              </a>
-            </div>
-          </div>
-
-          {/* Rechter kolom: Afbeelding */}
-          <div className="col-lg-6 text-center mt-4 mt-lg-0">
-            <img
-              src="https://via.placeholder.com/500x400"
-              alt="Investment Dashboard"
-              className="img-fluid"
-            />
-          </div>
+    <section className={styles.heroSection}>
+      {/* Hero Content binnen de container */}
+      <div className={styles.heroContent}>
+        <h1 className={styles.heroTitle}>
+          How everyday investors find <br />
+          <span className={styles.highlight}>winning crypto opportunities</span>
+        </h1>
+        <div className={styles.textContainer}>
+          <p className={styles.heroSubtitle}>
+            Over 230,000+ people rely on Cryptonary's research and analysis to find
+            data-backed crypto investment opportunities with a high chance of
+            succeeding.
+          </p>
+          <button className={styles.ctaButton}>Start 7-Day Trial</button>
+          <p className={styles.trustText}>
+            97% of our users rate us Excellent on Trustpilot
+          </p>
+        </div>
+        <div className={styles.heroImageContainer}>
+          <img src={heroImage} alt="Hero Visual" className={styles.heroImage} />
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default HeroSection;

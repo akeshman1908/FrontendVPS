@@ -1,0 +1,137 @@
+/* Algemeen */
+.sidebar {
+    background-color: #f4f4f4;
+    width: 250px;
+    padding: 1rem;
+    transition: width 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Laat alles naar boven uitlijnen */
+}
+
+.collapsed {
+    width: 80px;
+    /* Verwijder align-items: center; om dezelfde verticale uitlijning te behouden */
+}
+
+.toggleButton {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    align-self: flex-start;
+}
+
+/* In de ingeklapte modus centreren we de knop horizontaal zonder de verticale uitlijning te veranderen */
+.collapsed .toggleButton {
+    align-self: center;
+    margin: 0 auto; /* Horizontaal centreren */
+}
+
+/* Navigatielijst */
+.navList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.navItem {
+    width: 100%;
+    margin: 5px 0;
+}
+
+.navLink {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #e6e6e6;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.navLink:hover {
+    background-color: #d4d4d4;
+}
+
+/* Iconen kleiner maken */
+.icon {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.collapsed .icon {
+    margin-right: 0;
+}
+
+.collapsed span {
+    display: none;
+}
+
+/* Submenu */
+.subList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-left: 1.5rem;
+    width: 100%;
+}
+
+.subItem {
+    width: 100%;
+}
+
+.subLink {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.subLink:hover {
+    background-color: #d4d4d4;
+}
+
+.arrow {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+}
+
+.arrow::after {
+    content: '\25BC';
+}
+
+.open.arrow::after {
+    content: '\25B2';
+}
+
+.collapsed .arrow {
+    display: none;
+}
+
+/* Ingeklapte modus: Iconen en items blijven bovenaan uitgelijnd 
+   (geen extra vertical alignment nodig, deze wordt door .sidebar bepaald) */
+
+.collapsed .navList {
+    align-items: flex-start;
+}
+
+.collapsed .navItem {
+    display: flex;
+    justify-content: flex-start; /* Items blijven ook bovenaan uitgelijnd */
+}
+
+.collapsed .navLink {
+    justify-content: center; /* Horizontaal centreren van de iconen */
+}

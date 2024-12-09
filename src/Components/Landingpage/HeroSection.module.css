@@ -1,70 +1,122 @@
-/* Algemeen */
-.hero {
-    background: linear-gradient(135deg, #223280, #007bff); /* Donkerblauw naar lichtblauw */
-    color: white;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
-    overflow: hidden;
+/* Hero Section */
+.heroSection {
+    padding: 100px 20px 0;
+    text-align: center;
+    position: relative;
+    background: linear-gradient(to bottom, #ffffff, #343a40);
+    width: 100%;
+  }
+  
+  /* Inhoud binnen de container */
+  .heroContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   
   /* Titel */
-  .title {
-    font-size: 2.8rem;
-    font-weight: 700;
-    line-height: 1.3;
-    font-family: 'Outfit', sans-serif;
-
+  .heroTitle {
+    font-size: 3.5rem;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #212529;
   }
   
   .highlight {
-    color: #ffde59; /* Gele highlight */
+    color: #6f42c1;
+    background-image: linear-gradient(90deg, #007bff, #6f42c1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
   
-  /* Beschrijving */
-  .description {
+  /* Tekstcontainer */
+  .textContainer {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Ondertekst */
+  .heroSubtitle {
     font-size: 1.2rem;
-    color: #e4e4e4;
-    font-weight: 400;
-    font-family: 'Outfit', sans-serif;
-
+    color: #6c757d;
+    margin-bottom: 30px;
   }
   
-  /* Buttons */
-  .btnPrimary {
-    background-color: #ffde59;
-    color: #223280;
-    font-weight: 600;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-  }
-  
-  .btnPrimary:hover {
-    background-color: #e6c636;
-    color: #223280;
-  }
-  
-  .btnSecondary {
+  .ctaButton {
+    background-color: #007bff;
     color: white;
-    border: 2px solid white;
-    padding: 10px 20px;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
     border-radius: 5px;
-    transition: all 0.3s ease;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
   
-  .btnSecondary:hover {
-    background-color: white;
-    color: #223280;
+  .ctaButton:hover {
+    background-color: #0056b3;
   }
   
-  /* Responsive weergave */
+  .trustText {
+    font-size: 1rem;
+    color: #6c757d;
+    margin-top: 15px;
+  }
+  
+  /* Hero Image Container */
+  .heroImageContainer {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .heroImage {
+    width: 100%;
+    max-width: 1200px;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.2),
+                -5px 0px 15px rgba(0, 0, 0, 0.1),
+                5px 0px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Mobile Styles */
   @media (max-width: 768px) {
-    .title {
-      font-size: 2rem;
+    .heroSection {
+      padding: 60px 15px 0; /* Minder padding op mobiele apparaten */
     }
   
-    .description {
+    .heroTitle {
+      font-size: 2rem; /* Kleinere tekst op mobiele apparaten */
+      margin-bottom: 15px;
+    }
+  
+    .heroSubtitle {
       font-size: 1rem;
+      margin-bottom: 20px;
+    }
+  
+    .ctaButton {
+      padding: 12px 20px; /* Kleinere knop op mobiele apparaten */
+      font-size: 1rem;
+    }
+  
+    .trustText {
+      font-size: 0.9rem;
+    }
+  
+    .heroImage {
+      max-width: 100%; /* Zorgt ervoor dat de afbeelding zich aanpast */
+      border-radius: 15px 15px 0 0;
+    }
+  
+    .textContainer {
+      max-width: 90%; /* Breedte aanpassen op mobiele apparaten */
     }
   }
   

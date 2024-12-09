@@ -1,0 +1,6 @@
+/* Algemene container voor de landingpagina */
+.landingPage {
+    min-height: 100vh; /* Zorgt ervoor dat de achtergrond het volledige scherm bedekt */
+    width: 100%;
+  }
+  

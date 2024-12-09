@@ -1,0 +1,100 @@
+.container {
+    background-color: #0d1b2a;
+    padding: 1.25rem;
+    color: #fff;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    text-align: left;
+    height: 25rem;
+    box-sizing: border-box;
+  }
+  
+  .greeting {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    margin-bottom: 0.625rem;
+    width: 100%;
+  }
+  
+  .filter {
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 0.1875rem 0.5rem;
+    background-color: #1b2738;
+    border-radius: 0.3125rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .filter:hover {
+    background-color: #283747;
+  }
+  
+  .mainContent {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1;
+    overflow: hidden;
+  }
+  
+  .chartContainer {
+    width: 20rem;
+    height: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 40px;
+  }
+  
+  .legend {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3125rem;
+    text-align: left;
+    overflow-y: auto;
+    width: 100%;
+  }
+  
+  .legendItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.3125rem;
+    background-color: #1b2738;
+    border-radius: 0;
+    width: 100%;
+  }
+  
+  .legendDetails {
+    display: flex;
+    align-items: center;
+    gap: 0.3125rem;
+    justify-content: flex-start;
+  }
+  
+  .legendColorIndicator {
+    width: 0.75rem;
+    height: 0.75rem; 
+    border-radius: 50%;
+  }
+  
+  .percentage {
+    font-weight: bold;
+    color: #ddd;
+  }
+  
+  .rightPanel {
+    margin-left: 50px;
+  }
