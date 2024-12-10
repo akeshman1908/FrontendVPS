@@ -1,0 +1,44 @@
+/* ChartFilters.module.css */
+
+.filterContainer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Zorgt voor ruimte tussen de groepen */
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .filterGroup {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .chartTypeGroup {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto; /* Duwt deze groep naar de rechterkant */
+  }
+  
+  .filterButton {
+    padding: 0.5rem 1rem;
+    border: 2px solid #007bff; /* Dikkere rand voor beter zicht */
+    border-radius: 4px;
+    background-color: transparent; /* Geen achtergrond voor niet-actieve knoppen */
+    color: #007bff;
+    cursor: pointer;
+    transition: background-image 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 0.9rem;
+  }
+  
+  .filterButton:hover {
+    background-color: rgba(0, 123, 255, 0.1); /* Subtiele achtergrond bij hover */
+  }
+  
+  .filterButton.active {
+    background-image: linear-gradient(90deg, #007bff, #6f42c1);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Schaduw alleen bij actieve knoppen */
+    border: none; /* Verwijder de rand voor actieve knoppen */
+  }
+  

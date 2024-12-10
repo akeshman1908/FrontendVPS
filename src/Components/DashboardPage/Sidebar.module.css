@@ -1,3 +1,5 @@
+/* Sidebar.module.css */
+
 /* Algemeen */
 .sidebar {
     background-color: #f4f4f4;
@@ -48,19 +50,40 @@
     margin: 5px 0;
 }
 
-.navLink {
+/* Overschrijf standaard linkstijlen */
+.navLink,
+.subLink {
     display: flex;
     align-items: center;
     padding: 10px;
     cursor: pointer;
     background-color: #e6e6e6;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     width: 100%;
+    color: #333; /* Stel de gewenste tekstkleur in */
+    text-decoration: none; /* Verwijder onderstreping */
 }
 
-.navLink:hover {
+.navLink:hover,
+.subLink:hover {
     background-color: #d4d4d4;
+    color: #000; /* Optioneel: verander de kleur bij hover */
+}
+
+.navLink:focus,
+.subLink:focus {
+    outline: none;
+    background-color: #ccc; /* Optioneel: achtergrondkleur bij focus */
+}
+
+/* Overschrijf standaard linkstijlen voor alle toestanden */
+.navLink:link,
+.navLink:visited,
+.subLink:link,
+.subLink:visited {
+    color: #333; /* Zorg ervoor dat de tekstkleur correct is */
+    text-decoration: none; /* Verwijder onderstreping */
 }
 
 /* Iconen kleiner maken */
@@ -90,30 +113,17 @@
     width: 100%;
 }
 
-.subLink {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 100%;
-}
-
-.subLink:hover {
-    background-color: #d4d4d4;
-}
-
 .arrow {
     margin-left: auto;
     transition: transform 0.3s ease;
 }
 
 .arrow::after {
-    content: '\25BC';
+    content: '\25BC'; /* ▼ */
 }
 
 .open.arrow::after {
-    content: '\25B2';
+    content: '\25B2'; /* ▲ */
 }
 
 .collapsed .arrow {
@@ -134,4 +144,10 @@
 
 .collapsed .navLink {
     justify-content: center; /* Horizontaal centreren van de iconen */
+}
+
+/* Actief menu item */
+.active {
+    background-color: #d4d4d4;
+    color: #000; /* Tekstkleur voor actief menu item */
 }

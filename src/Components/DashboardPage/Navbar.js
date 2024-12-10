@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Navbar.module.css";
-import { useNavigate } from 'react-router-dom'; // Gebruik voor navigatie
+import { useNavigate, Link } from 'react-router-dom'; // Gebruik Link voor navigatie
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faArrowUp, faArrowDown, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,14 +13,14 @@ const Navbar = () => {
   // Placeholder voor logout functionaliteit
   const handleLogout = () => {
     localStorage.removeItem("authToken");
-  navigate("/login");
+    navigate("/login");
   };
 
   return (
     <header className={styles.navbar}>
-      <a href="/" className={styles.navbarBrand}>
+      <Link to="/" className={styles.navbarBrand}>
         Portfolio<span className={styles.brandHighlight}>Tracker</span>
-      </a>
+      </Link>
 
       <div className={styles.actions}>
         {/* Taalkeuze knop */}

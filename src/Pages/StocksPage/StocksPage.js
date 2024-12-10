@@ -1,9 +1,11 @@
+// StocksPage.js
 import React, { useState } from "react";
 import Navbar from "../../Components/DashboardPage/Navbar";
 import Sidebar from "../../Components/DashboardPage/Sidebar";
 import AssetLineChart from "../../Components/Charts/AssetLineChart";
 import Pagination from "../../Components/Table/Pagination";
-import AssetLineTable from "../../Components/Table/AssetLineTable"; 
+import AssetLineTable from "../../Components/Table/AssetLineTable";
+import ChartFilters from "../../Components/Charts/ChartFilters"; // Importeer de ChartFilters component
 import styles from "./StocksPage.module.css";
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -12,7 +14,8 @@ function StocksPage() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedAsset, setSelectedAsset] = useState(null);
-  const itemsPerPage = 5;
+  const [selectedFilter, setSelectedFilter] = useState("1J"); // Standaard filter
+  const itemsPerPage = 5; // Maximaal 5 items per pagina
 
   // Voorbeeld maandelijkse data
   const assets = [
@@ -130,17 +133,76 @@ function StocksPage() {
     setIsSidebarCollapsed(collapsed);
   };
 
+  const handleFilterChange = (filter) => {
+    setSelectedFilter(filter);
+    setCurrentPage(1); // Reset naar eerste pagina bij filterwijziging
+  };
+
+  // Filter de data op basis van het geselecteerde tijdsbestek
+  const filterAssets = (assets, filter) => {
+    const currentDate = new Date();
+    let filteredAssets = [];
+
+    switch (filter) {
+      case "1D":
+        // Simuleer een dagelijkse weergave (hier gebruiken we de laatste maand)
+        filteredAssets = assets.map(asset => ({
+          ...asset,
+          values: asset.values.slice(-1)
+        }));
+        break;
+      case "7D":
+        // Simuleer een week-weergave (hier gebruiken we de laatste 2 maanden)
+        filteredAssets = assets.map(asset => ({
+          ...asset,
+          values: asset.values.slice(-2)
+        }));
+        break;
+      case "1M":
+        // Laatste maand
+        filteredAssets = assets.map(asset => ({
+          ...asset,
+          values: asset.values.slice(-1)
+        }));
+        break;
+      case "6M":
+        // Laatste 6 maanden
+        filteredAssets = assets.map(asset => ({
+          ...asset,
+          values: asset.values.slice(-6)
+        }));
+        break;
+      case "1J":
+        // Laatste jaar (alle maanden)
+        filteredAssets = assets.map(asset => ({
+          ...asset,
+          values: asset.values.slice(-12)
+        }));
+        break;
+      case "All":
+        // Alles
+        filteredAssets = assets;
+        break;
+      default:
+        filteredAssets = assets;
+    }
+
+    return filteredAssets;
+  };
+
+  const filteredAssets = filterAssets(assets, selectedFilter);
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = assets.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredAssets.slice(indexOfFirstItem, indexOfLastItem);
 
-  const totalPages = Math.ceil(assets.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredAssets.length / itemsPerPage);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
-  const topFiveAssets = assets.slice(0, 5);
+  const topFiveAssets = filteredAssets.slice(0, 5);
 
   const handleAssetClick = (asset) => {
     setSelectedAsset(asset);
@@ -159,9 +221,9 @@ function StocksPage() {
     ];
   } else {
     // Toon gemiddelde van alle aandelen
-    const numberOfAssets = assets.length;
+    const numberOfAssets = filteredAssets.length;
     const avgValues = MONTHS.map((m) => {
-      const sum = assets.reduce((acc, asset) => {
+      const sum = filteredAssets.reduce((acc, asset) => {
         const monthVal = asset.values.find((val) => val.month === m)?.value || 0;
         return acc + monthVal;
       }, 0);
@@ -178,17 +240,17 @@ function StocksPage() {
   }
 
   // Tabel Data Berekening (gemiddelden, percentages, changes)
-  const allAverages = assets.map(a => {
+  const allAverages = filteredAssets.map(a => {
     const sum = a.values.reduce((acc, val) => acc + val.value, 0);
-    const avg = sum / 12;
+    const avg = sum / a.values.length;
     return { asset: a.label, avg, color: a.color, original: a };
   });
 
   const totalAvgSum = allAverages.reduce((acc, obj) => acc + obj.avg, 0);
 
   const tableData = allAverages.map(item => {
-    const decValue = item.original.values.find(v => v.month === "Dec").value;
-    const novValue = item.original.values.find(v => v.month === "Nov").value;
+    const decValue = item.original.values.find(v => v.month === "Dec")?.value || 0;
+    const novValue = item.original.values.find(v => v.month === "Nov")?.value || 0;
     const change24h = ((decValue - novValue) / novValue) * 100;
     const change1h = change24h / 2;
 
@@ -219,22 +281,28 @@ function StocksPage() {
       <div className={styles.container}>
         <Sidebar onToggle={handleSidebarToggle} />
         <main className={`${styles.content} ${isSidebarCollapsed ? styles.collapsed : ""}`}>
+
           <AssetLineChart
             data={chartData}
-            filters={[]}
+            timeFrame={selectedFilter} // Geef de geselecteerde filter door
             userName="David"
             showAssetsInLegend={topFiveAssets}
           />
 
           <div className={styles.tableWrapper}>
+            <ChartFilters onFilterChange={handleFilterChange} />
+
             <AssetLineTable
               data={currentTableItems}
+              onAssetClick={handleAssetClick} // Optioneel, indien je klikfunctionaliteit wilt toevoegen
             />
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
+            {totalPages > 1 && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
+            )}
           </div>
         </main>
       </div>

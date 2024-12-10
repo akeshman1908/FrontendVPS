@@ -1,3 +1,4 @@
+// Sidebar.js
 import React, { useState } from "react";
 import {
   FaBitcoin,
@@ -15,12 +16,13 @@ import {
   FaBook,
   FaAngleDown,
 } from "react-icons/fa";
-import { Link } from "react-router-dom"; // <-- Import Link
+import { Link, useNavigate } from "react-router-dom"; // Import Link en useNavigate
 import styles from "./Sidebar.module.css";
 
 function Sidebar({ onToggle }) {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [activeMenu, setActiveMenu] = useState(null);
+  const navigate = useNavigate(); // Voor programmatic navigatie
 
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
@@ -33,6 +35,14 @@ function Sidebar({ onToggle }) {
     setActiveMenu(activeMenu === menu ? null : menu);
   };
 
+  const handleMenuClick = (menu, route) => {
+    if (isCollapsed) {
+      navigate(route);
+    } else {
+      toggleSubmenu(menu);
+    }
+  };
+
   return (
     <div className={`${styles.sidebar} ${isCollapsed ? styles.collapsed : ""}`}>
       {/* Toggle Button */}
@@ -40,8 +50,8 @@ function Sidebar({ onToggle }) {
         <FaBars />
       </button>
 
-       {/* Navigatielijst */}
-       <ul className={styles.navList}>
+      {/* Navigatielijst */}
+      <ul className={styles.navList}>
         {/* Overzicht */}
         <li className={styles.navItem}>
           <Link to="/dashboard" className={styles.navLink}>
@@ -56,7 +66,7 @@ function Sidebar({ onToggle }) {
             className={`${styles.navLink} ${
               activeMenu === "stocks" ? styles.active : ""
             }`}
-            onClick={() => toggleSubmenu("stocks")}
+            onClick={() => handleMenuClick("stocks", "/stocks")}
           >
             <FaChartLine className={styles.icon} />
             {!isCollapsed && <span>Aandelen</span>}
@@ -78,10 +88,10 @@ function Sidebar({ onToggle }) {
                 </Link>
               </li>
               <li className={styles.subItem}>
-                <div className={styles.subLink}>
+                <Link to="/stocks/dividenden" className={styles.subLink}>
                   <FaExchangeAlt className={styles.icon} />
                   <span>Dividenden</span>
-                </div>
+                </Link>
               </li>
             </ul>
           )}
@@ -93,7 +103,7 @@ function Sidebar({ onToggle }) {
             className={`${styles.navLink} ${
               activeMenu === "crypto" ? styles.active : ""
             }`}
-            onClick={() => toggleSubmenu("crypto")}
+            onClick={() => handleMenuClick("crypto", "/cryptocurrency")}
           >
             <FaBitcoin className={styles.icon} />
             {!isCollapsed && <span>Cryptocurrency</span>}
@@ -108,16 +118,23 @@ function Sidebar({ onToggle }) {
           {activeMenu === "crypto" && !isCollapsed && (
             <ul className={styles.subList}>
               <li className={styles.subItem}>
-                <div className={styles.subLink}>
-                  <FaWallet className={styles.icon} />
-                  <span>Wallets</span>
-                </div>
+                {/* Link naar Overzicht Cryptocurrency */}
+                <Link to="/cryptocurrency" className={styles.subLink}>
+                  <FaChartLine className={styles.icon} />
+                  <span>Overzicht</span>
+                </Link>
               </li>
               <li className={styles.subItem}>
-                <div className={styles.subLink}>
+                <Link to="/cryptocurrency/wallets" className={styles.subLink}>
+                  <FaWallet className={styles.icon} />
+                  <span>Wallets</span>
+                </Link>
+              </li>
+              <li className={styles.subItem}>
+                <Link to="/cryptocurrency/transacties" className={styles.subLink}>
                   <FaExchangeAlt className={styles.icon} />
                   <span>Transacties</span>
-                </div>
+                </Link>
               </li>
             </ul>
           )}
@@ -129,7 +146,7 @@ function Sidebar({ onToggle }) {
             className={`${styles.navLink} ${
               activeMenu === "forex" ? styles.active : ""
             }`}
-            onClick={() => toggleSubmenu("forex")}
+            onClick={() => handleMenuClick("forex", "/forex")}
           >
             <FaDollarSign className={styles.icon} />
             {!isCollapsed && <span>Valuta </span>}
@@ -144,16 +161,16 @@ function Sidebar({ onToggle }) {
           {activeMenu === "forex" && !isCollapsed && (
             <ul className={styles.subList}>
               <li className={styles.subItem}>
-                <div className={styles.subLink}>
+                <Link to="/forex/valutaparen" className={styles.subLink}>
                   <FaChartLine className={styles.icon} />
                   <span>Valutaparen</span>
-                </div>
+                </Link>
               </li>
               <li className={styles.subItem}>
-                <div className={styles.subLink}>
+                <Link to="/forex/trends" className={styles.subLink}>
                   <FaExchangeAlt className={styles.icon} />
                   <span>Trends</span>
-                </div>
+                </Link>
               </li>
             </ul>
           )}
@@ -165,7 +182,7 @@ function Sidebar({ onToggle }) {
             className={`${styles.navLink} ${
               activeMenu === "metals" ? styles.active : ""
             }`}
-            onClick={() => toggleSubmenu("metals")}
+            onClick={() => handleMenuClick("metals", "/metals")}
           >
             <FaGem className={styles.icon} />
             {!isCollapsed && <span>Edelmetalen</span>}
@@ -180,16 +197,16 @@ function Sidebar({ onToggle }) {
           {activeMenu === "metals" && !isCollapsed && (
             <ul className={styles.subList}>
               <li className={styles.subItem}>
-                <div className={styles.subLink}>
+                <Link to="/metals/prijzen" className={styles.subLink}>
                   <FaChartLine className={styles.icon} />
                   <span>Prijzen</span>
-                </div>
+                </Link>
               </li>
               <li className={styles.subItem}>
-                <div className={styles.subLink}>
+                <Link to="/metals/opslaglocaties" className={styles.subLink}>
                   <FaBuilding className={styles.icon} />
                   <span>Opslaglocaties</span>
-                </div>
+                </Link>
               </li>
             </ul>
           )}
@@ -197,42 +214,42 @@ function Sidebar({ onToggle }) {
 
         {/* Vastgoed */}
         <li className={styles.navItem}>
-          <div className={styles.navLink}>
+          <Link to="/vastgoed" className={styles.navLink}>
             <FaBuilding className={styles.icon} />
             {!isCollapsed && <span>Vastgoed</span>}
-          </div>
+          </Link>
         </li>
 
         {/* Rapporten */}
         <li className={styles.navItem}>
-          <div className={styles.navLink}>
+          <Link to="/rapporten" className={styles.navLink}>
             <FaFileAlt className={styles.icon} />
             {!isCollapsed && <span>Rapporten</span>}
-          </div>
+          </Link>
         </li>
 
         {/* Waarschuwingen */}
         <li className={styles.navItem}>
-          <div className={styles.navLink}>
+          <Link to="/waarschuwingen" className={styles.navLink}>
             <FaBell className={styles.icon} />
             {!isCollapsed && <span>Waarschuwingen</span>}
-          </div>
+          </Link>
         </li>
 
         {/* Educatie */}
         <li className={styles.navItem}>
-          <div className={styles.navLink}>
+          <Link to="/educatie" className={styles.navLink}>
             <FaBook className={styles.icon} />
             {!isCollapsed && <span>Educatie</span>}
-          </div>
+          </Link>
         </li>
 
         {/* Instellingen */}
         <li className={styles.navItem}>
-          <div className={styles.navLink}>
+          <Link to="/instellingen" className={styles.navLink}>
             <FaCog className={styles.icon} />
             {!isCollapsed && <span>Instellingen</span>}
-          </div>
+          </Link>
         </li>
       </ul>
     </div>

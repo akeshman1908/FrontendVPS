@@ -1,58 +1,65 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import { Chart as ChartJS, LineElement, Tooltip, Legend, PointElement, LinearScale, CategoryScale } from "chart.js";
+import {
+  Chart as ChartJS,
+  LineElement,
+  Tooltip,
+  Legend,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+} from "chart.js";
 import styles from "./AssetLineChart.module.css";
 
-// Chart.js registratie
-ChartJS.register(LineElement, Tooltip, Legend, PointElement, LinearScale, CategoryScale);
+ChartJS.register(
+  LineElement,
+  Tooltip,
+  Legend,
+  PointElement,
+  LinearScale,
+  CategoryScale
+);
 
-const AssetLineChart = ({ data, filters, userName, showAssetsInLegend }) => {
-  // data format:
-  // [
-  //   {
-  //     label: "Gemiddeld" (of asset naam),
-  //     color: "#color",
-  //     values: [{ month: "Jan", value: number }, { month: "Feb", value: number }, ...]
-  //   }
-  // ]
+const AssetLineChart = ({ data, timeFrame, userName, showAssetsInLegend }) => {
+  if (!data || data.length === 0 || !data[0].values || data[0].values.length === 0) {
+    return <div className={styles.noData}>Geen gegevens beschikbaar voor het geselecteerde tijdsbestek.</div>;
+  }
+
+  const labels = data[0].values.map((item) => item.month);
+
+  const chartDatasets = data.map((asset) => ({
+    label: asset.label || "Onbekend",
+    data: asset.values.map((item) => item.value || 0),
+    borderColor: asset.color || "#4caf50",
+    backgroundColor: "rgba(76, 175, 80, 0.2)",
+    fill: true,
+    tension: 0.4,
+    borderWidth: 2,
+    pointRadius: 3,
+    pointHoverRadius: 5,
+  }));
 
   const chartData = {
-    labels: data[0].values.map((item) => item.month),
-    datasets: [
-      {
-        label: data[0].label || "Onbekend",
-        data: data[0].values.map((item) => item.value || 0),
-        borderColor: data[0].color || "#4caf50",
-        backgroundColor: "rgba(76, 175, 80, 0.2)",
-        fill: true,
-        tension: 0.4,
-        borderWidth: 2,
-      },
-    ],
+    labels,
+    datasets: chartDatasets,
   };
 
-  // Bepaal begroeting op basis van tijd
   const hour = new Date().getHours();
   const greeting =
-    hour < 12
-      ? "Goedemorgen"
-      : hour < 18
-      ? "Goedemiddag"
-      : "Goedenavond";
+    hour < 12 ? "Goedemorgen" : hour < 18 ? "Goedemiddag" : "Goedenavond";
 
-  // Grafiekopties
   const options = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        display: false, // Verberg de legenda in de chart zelf
+        display: false, 
       },
       tooltip: {
         callbacks: {
           label: (tooltipItem) => {
             const value = tooltipItem.raw || 0;
-            return `${tooltipItem.label}: ${value.toFixed(2)}`;
+            return `${tooltipItem.dataset.label}: €${value.toFixed(2)}`;
           },
         },
       },
@@ -63,6 +70,10 @@ const AssetLineChart = ({ data, filters, userName, showAssetsInLegend }) => {
           display: true,
           text: "Maanden",
           color: "#fff",
+          font: {
+            size: 14,
+            weight: "bold",
+          },
         },
         grid: {
           color: "rgba(255, 255, 255, 0.1)",
@@ -75,14 +86,19 @@ const AssetLineChart = ({ data, filters, userName, showAssetsInLegend }) => {
         beginAtZero: true,
         title: {
           display: true,
-          text: "Portfolio Waarde",
+          text: "Portfolio Waarde (€)",
           color: "#fff",
+          font: {
+            size: 14,
+            weight: "bold",
+          },
         },
         grid: {
           color: "rgba(255, 255, 255, 0.1)",
         },
         ticks: {
           color: "#fff",
+          callback: (value) => `€${value}`,
         },
       },
     },
@@ -99,19 +115,11 @@ const AssetLineChart = ({ data, filters, userName, showAssetsInLegend }) => {
           <div className={styles.greeting}>
             {greeting} {userName}, welkom op je vermogens dashboard.
           </div>
-          <div className={styles.filters}>
-            {filters.map((filter, index) => (
-              <span key={index} className={styles.filter}>
-                {filter}
-              </span>
-            ))}
-          </div>
 
           <div className={styles.legend}>
-            {/* Laat de eerste 5 assets zien in de legend aan de rechterkant */}
             {showAssetsInLegend.map((asset, index) => {
-              // Laat bijvoorbeeld de laatste maand (Dec) waarde zien in de legend
-              const decValue = asset.values.find((v) => v.month === "Dec")?.value || 0;
+              const latestMonth = data[0].values[data[0].values.length - 1].month;
+              const latestValue = asset.values.find((v) => v.month === latestMonth)?.value || 0;
               return (
                 <div key={index} className={styles.legendItem}>
                   <div className={styles.legendDetails}>
@@ -122,7 +130,7 @@ const AssetLineChart = ({ data, filters, userName, showAssetsInLegend }) => {
                     <span>{asset.label || "Onbekend"}</span>
                   </div>
                   <span className={styles.percentage}>
-                    {decValue.toFixed(2)}
+                    €{latestValue.toFixed(2)}
                   </span>
                 </div>
               );
